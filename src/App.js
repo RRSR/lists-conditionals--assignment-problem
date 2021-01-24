@@ -5,14 +5,12 @@ import Char from './CharComponent/Char';
 class App extends Component {
 
     state = {
-        text: '',
-        textLength: 0
+        text: ''
     };
 
     updateText = (event) => {
         this.setState({
-            text: event.target.value,
-            textLength: event.target.value.length
+            text: event.target.value
         });
     }
 
@@ -22,32 +20,28 @@ class App extends Component {
         let updatedText = charArray.join('');
         this.setState({
             text: updatedText,
-            textLength: updatedText.length
         });
     }
 
     render() {
 
         let characters = null;
-        if (this.state.textLength > 0) {
-            characters = (
-                <div> {this.state.text.split('').map((character, index) => {
-                    return <Char
-                        text={character}
-                        myClick={() => this.deleteChar(index)}
-                    />
-                })}
-                </div>
-            );
-        }
+        characters = this.state.text.split('').map((character, index) => {
+            return <Char
+                text={character}
+                myClick={() => this.deleteChar(index)}
+                key={index}
+            />
+        });
+
         return (
             <div>
                 <input
                     type='text'
                     onChange={(event) => this.updateText(event)}
                     value={this.state.text} />
-                <p> Word Count : {this.state.textLength}</p>
-                <Validation length={this.state.textLength} />
+                <p> Word Count : {this.state.text.length}</p>
+                <Validation length={this.state.text.length} />
                 {characters}
             </div>
         );

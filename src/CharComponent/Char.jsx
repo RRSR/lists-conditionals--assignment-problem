@@ -1,15 +1,12 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './Char.css';
 
-class Char extends Component {
-    render() {
-    
-        return (
-            <div className='Char' onClick={this.props.myClick}>
-                {this.props.text}
-            </div>
-        );
-    }
+const char = (props) => {
+    return (
+        <div className='Char' onClick={props.myClick}>
+            {props.text}
+        </div>
+    );
 }
 
-export default Char;
+export default char;

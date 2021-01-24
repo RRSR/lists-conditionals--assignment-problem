@@ -1,22 +1,20 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './Validation.css'
 
-class Validation extends Component {
-    render() {
+const validation = (props) => {
 
-        var validationMessage = '';
-        if(this.props.length < 5){
-            validationMessage = 'Text too short.';
-        }else if(this.props.length > 20){
-            validationMessage = 'Text too long.';
-        }
-
-        return (
-            <div className='Validation'>
-                {validationMessage}
-            </div>
-        );
+    var validationMessage = '';
+    if (props.length < 5) {
+        validationMessage = 'Text too short.';
+    } else if (props.length > 20) {
+        validationMessage = 'Text too long.';
     }
+
+    return (
+        <div className='Validation'>
+            {validationMessage}
+        </div>
+    );
 }
 
-export default Validation;
+export default validation;
