@@ -1,5 +1,6 @@
-import React, {Component} from 'react';
-import Validation from './Validation/Validation'
+import React, { Component } from 'react';
+import Validation from './Validation/Validation';
+import Char from './CharComponent/Char';
 
 class App extends Component {
 
@@ -15,12 +16,39 @@ class App extends Component {
         });
     }
 
+    deleteChar = (index) => {
+        let charArray = this.state.text.split('');
+        charArray.splice(index, 1);
+        let updatedText = charArray.join('');
+        this.setState({
+            text: updatedText,
+            textLength: updatedText.length
+        });
+    }
+
     render() {
+
+        let characters = null;
+        if (this.state.textLength > 0) {
+            characters = (
+                <div> {this.state.text.split('').map((character, index) => {
+                    return <Char
+                        text={character}
+                        myClick={() => this.deleteChar(index)}
+                    />
+                })}
+                </div>
+            );
+        }
         return (
             <div>
-                <textarea onChange={(event) => this.updateText(event)}/>
-                <p>The above paraghrap has {this.state.textLength} words.</p>
-                <Validation length={this.state.textLength}/>
+                <input
+                    type='text'
+                    onChange={(event) => this.updateText(event)}
+                    value={this.state.text} />
+                <p> Word Count : {this.state.textLength}</p>
+                <Validation length={this.state.textLength} />
+                {characters}
             </div>
         );
     }
