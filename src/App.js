@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Validation from './Validation/Validation'
 
 class App extends Component {
 
@@ -17,8 +18,9 @@ class App extends Component {
     render() {
         return (
             <div>
-                <input onChange={(event) => this.updateText(event)}/>
-                <p>{this.state.textLength} TEST</p>
+                <textarea onChange={(event) => this.updateText(event)}/>
+                <p>The above paraghrap has {this.state.textLength} words.</p>
+                <Validation length={this.state.textLength}/>
             </div>
         );
     }
