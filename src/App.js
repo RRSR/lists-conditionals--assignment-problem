@@ -1,12 +1,24 @@
 import React, {Component} from 'react';
 
 class App extends Component {
+
+    state = {
+        text: '',
+        textLength: 0
+    };
+
+    updateText = (event) => {
+        this.setState({
+            text: event.target.value,
+            textLength: event.target.value.length
+        });
+    }
+
     render() {
         return (
             <div>
-                <p>
-                    This is a PRIMARY DIV
-                </p>
+                <input onChange={(event) => this.updateText(event)}/>
+                <p>{this.state.textLength} TEST</p>
             </div>
         );
     }
